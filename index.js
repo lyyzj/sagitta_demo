@@ -47,6 +47,7 @@ app.init({
   }
 }).then(() => {
   app.start();
+  app.logger.info('Server started ...');
 }).catch((err) => {
   console.log(err.stack);
 });

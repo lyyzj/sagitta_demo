@@ -27,6 +27,7 @@ function *validate(next) {
 }
 
 function *execute(next) {
+  this.body = `GOT ID: ${this.params.id}`;
 }
 
 const api = new UserFetchSingle();
