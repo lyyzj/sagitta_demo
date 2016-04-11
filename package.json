@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/agreatfool/sagitta_demo#readme",
   "dependencies": {
-    "sagitta": "^1.0.0"
+    "sagitta": "^1.0.3",
+    "sails-memory": "^0.10.6"
   }
 }
