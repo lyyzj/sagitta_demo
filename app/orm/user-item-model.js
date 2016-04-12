@@ -8,7 +8,7 @@ class UserItemModel extends OrmModel {
   constructor() {
     this.name        = 'user-item';
     this.instance    = ormInstance.getWaterlineModel(this.name);
-    this.identifyKey = 'userId';
+    this.cacheKey    = 'userId';
     this.schema      = {
   "identity": "user-item",
   "connection": "default",

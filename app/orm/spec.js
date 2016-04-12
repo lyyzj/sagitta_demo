@@ -4,7 +4,7 @@ const OrmSpec = [
   {
     identity: 'user',
     connection: 'default',
-    shardKey: 'id',
+    cacheKey: 'id',
     attributes: {
       id: {
         type: 'integer',
@@ -18,7 +18,7 @@ const OrmSpec = [
   {
     identity: 'user-item',
     connection: 'default',
-    shardKey: 'userId',
+    cacheKey: 'userId',
     attributes: {
       itemId: {
         type: 'integer',
