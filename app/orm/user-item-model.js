@@ -1,28 +1,26 @@
 "use strict";
 
-const ormInstance = require('sagitta').Instance.orm;
 const OrmModel    = require('sagitta').Orm.OrmModel;
 
 class UserItemModel extends OrmModel {
 
   constructor() {
     this.name        = 'user-item';
-    this.instance    = ormInstance.getWaterlineModel(this.name);
     this.cacheKey    = 'userId';
     this.schema      = {
-  "identity": "user-item",
-  "connection": "default",
-  "attributes": {
-    "itemId": {
-      "type": "integer",
-      "primaryKey": true,
-      "autoIncrement": true
-    },
-    "userId": {
-      "type": "integer"
-    }
-  }
-};
+      identity: 'user-item',
+      connection: 'default',
+      attributes: {
+        itemId: {
+          type: 'integer',
+          primaryKey: true,
+          autoIncrement: true
+        },
+        userId: {
+          type: 'integer'
+        }
+      }
+    };
   }
 
 }

@@ -1,10 +1,11 @@
 "use strict";
 
-const OrmSpec = [
-  {
-    name: 'user',
-    cacheKey: 'id',
-    schema: `{
+var joiValidate     = require('sagitta').Utility.joiValidate;
+var waterlineToJoi  = require('sagitta').Utility.waterlineToJoi;
+
+var Validator = function() {
+  this.schema = {
+    'user': waterlineToJoi({
       identity: 'user',
       connection: 'default',
       attributes: {
@@ -16,12 +17,8 @@ const OrmSpec = [
         firstName: 'string',
         lastName: 'string'
       }
-    }`
-  },
-  {
-    name: 'user-item',
-    cacheKey: 'userId',
-    schema: `{
+    }),
+    'user-item': waterlineToJoi({
       identity: 'user-item',
       connection: 'default',
       attributes: {
@@ -34,9 +31,15 @@ const OrmSpec = [
           type: 'integer'
         }
       }
-    }`
+    }),
+  };
+};
+
+Validator.prototype.validate = function(name, obj) {
+  if (!this.schema.hasOwnProperty(name)) {
+    throw new Error('Unknown model name: ' + name);
   }
-];
+  return joiValidate(obj, this.schema[name]);
+};
 
-
-module.exports = OrmSpec;
+module.exports = new Validator();

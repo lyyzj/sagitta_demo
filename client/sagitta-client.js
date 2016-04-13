@@ -1,7 +1,7 @@
 "use strict";
 
-const request = require('sagitta').Utility.promisedRequest;
-const SagittaClient = function() {};
+var request = require('sagitta').Utility.promisedRequest;
+var SagittaClient = function() {};
 
 SagittaClient.prototype.userFetchSingle = function(id) {
   var uri = '/user/:id';
