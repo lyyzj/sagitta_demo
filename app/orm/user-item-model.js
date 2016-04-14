@@ -1,6 +1,6 @@
 "use strict";
 
-const OrmModel    = require('sagitta').Orm.OrmModel;
+const OrmModel = require('sagitta').Orm.OrmModel;
 
 class UserItemModel extends OrmModel {
 
@@ -21,6 +21,18 @@ class UserItemModel extends OrmModel {
         }
       }
     };
+  }
+  
+  afterCreate(createdValues, next) {
+    OrmModel.removeCacheAfterRecordChanged('user-item', 'userId', createdValues, next);
+  }
+
+  afterUpdate(updatedRecord, next) {
+    OrmModel.removeCacheAfterRecordChanged('user-item', 'userId', updatedRecord, next);
+  }
+
+  afterDestroy(deletedRecord, next) {
+    OrmModel.removeCacheAfterRecordChanged('user-item', 'userId', deletedRecord, next);
   }
 
 }
