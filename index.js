@@ -4,12 +4,16 @@ const libPath = require('path');
 
 const Sagitta = require('sagitta');
 
+const fs = require('fs-extra');
+
 const app = Sagitta.Instance.app;
+
+const databaseCfg = fs.readJsonSync(libPath.join('config/database.json'));
 
 app.init({
   cache: {
     host:   '127.0.0.1',
-    port:   6379,
+    port:   6370,
     family: 4,
     db:     0
   },
@@ -27,12 +31,14 @@ app.init({
   orm: {
     path: libPath.join(__dirname, 'app', 'orm'),
     adapters: {
-      memory: require('sails-memory')
+      memory: require('sails-memory'),
+      mongodb: require('sails-mongo')
     },
     connections: {
       default: {
         adapter: 'memory'
-      }
+      },
+      mongo: databaseCfg.mongo
     }
   },
   router: {
@@ -41,7 +47,7 @@ app.init({
   },
   template: {},
   app: {
-    host:       '127.0.0.1',
+    host:       '0.0.0.0',
     port:       3089,
     staticPath: libPath.join(__dirname, 'public')
   }

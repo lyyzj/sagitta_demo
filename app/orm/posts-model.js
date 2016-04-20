@@ -1,45 +1,14 @@
 "use strict";
 
-const OrmSpec = [
-  {
-    name: 'user',
-    cacheKey: 'id',
-    schema: `{
-      identity: 'user',
-      connection: 'default',
-      attributes: {
-        id: {
-          type: 'integer',
-          primaryKey: true,
-          autoIncrement: true
-        },
-        firstName: 'string',
-        lastName: 'string'
-      }
-    }`
-  },
-  {
-    name: 'user-item',
-    cacheKey: 'userId',
-    schema: `{
-      identity: 'user-item',
-      connection: 'default',
-      attributes: {
-        itemId: {
-          type: 'integer',
-          primaryKey: true,
-          autoIncrement: true
-        },
-        userId: {
-          type: 'integer'
-        }
-      }
-    }`
-  },
-  {
-    name: 'posts',
-    cacheKey: 'id',
-    schema: `{
+const OrmModel = require('sagitta').Orm.OrmModel;
+
+class PostsModel extends OrmModel {
+
+  constructor() {
+    super();
+    this.name        = 'posts';
+    this.cacheKey    = 'id';
+    this.schema      = {
         identity: 'posts',
         connection: 'mongo',
         attributes: {
@@ -79,9 +48,23 @@ const OrmSpec = [
         testFunc: function() {
             console.log("print");
         }
-    }`
+    };
   }
-];
+  
+  afterCreate(createdValues, next) {
+    OrmModel.removeCacheAfterRecordChanged('posts', 'id', createdValues, next);
+  }
 
+  afterUpdate(updatedRecord, next) {
+    OrmModel.removeCacheAfterRecordChanged('posts', 'id', updatedRecord, next);
+  }
 
-module.exports = OrmSpec;
+  afterDestroy(deletedRecord, next) {
+    OrmModel.removeCacheAfterRecordChanged('posts', 'id', deletedRecord, next);
+  }
+
+}
+
+const model = new PostsModel();
+
+module.exports = model;
