@@ -4,11 +4,11 @@ const libPath = require('path');
 
 const Sagitta = require('sagitta');
 
-const fs = require('fs-extra');
+const fsp = require('fs-promise');
 
 const app = Sagitta.Instance.app;
 
-const databaseCfg = fs.readJsonSync(libPath.join('config/database.json'));
+const databaseCfg = fsp.readJsonSync(libPath.join('config/database.json'));
 
 app.init({
   cache: {

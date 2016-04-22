@@ -48,8 +48,8 @@ const OrmSpec = [
             primaryKey: true,
             unique: true,
             defaultsTo: function() {
-                let uuid = require("uuid");
-                return uuid.v4(); 
+              let uuid = require("uuid");
+              return uuid.v4(); 
             }
           },
           title: {
@@ -63,21 +63,21 @@ const OrmSpec = [
           postAt: {
             type: 'date',
             defaultsTo: function() {
-                return new Date();
+              return new Date();
             },
             after: function() {
-                return '2016-04-13'
+              return '2016-04-13'
             }
           }
         },
         autoPK: false,
-        autoCreatedAt:false,
-        afterCreate: function(values,cb) {
-            console.log("after create");
-            cb();
+        autoCreatedAt: false,
+        afterCreate: function(values, cb) {
+          console.log("after create");
+          cb();
         },  
         testFunc: function() {
-            console.log("print");
+          console.log("print");
         }
     }`
   }

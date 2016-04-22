@@ -33,9 +33,9 @@ function *execute(next) {
   let id = this.params.id;
   let posts = require("../orm/posts-model").instance;
   let json = null;
-  try{
+  try {
       json = yield posts.update(id, data);
-  } catch(err) {
+  } catch (err) {
       json = err;
   }
   this.body = json;

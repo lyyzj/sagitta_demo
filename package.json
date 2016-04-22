@@ -18,9 +18,8 @@
   "homepage": "https://github.com/agreatfool/sagitta_demo#readme",
   "dependencies": {
     "co": "^4.6.0",
-    "fs-extra": "^0.26.7",
+    "fs-promise": "^0.5.0",
     "joi": "^8.0.5",
-    "request": "^2.71.0",
     "sagitta": "^1.0.17",
     "sails-memory": "^0.10.6",
     "sails-mongo": "^0.12.0",

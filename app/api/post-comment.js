@@ -23,10 +23,10 @@ class PostComment {
 
 function *validate(next) {
   let aggregatedParams = Object.assign({}, this.params, this.query, this.request.body);
-  try{
+  try {
     yield joiValidate(aggregatedParams, api.schema, { allowUnknown: true });
     yield next;
-  }catch(err) {
+  } catch (err) {
     this.body = err.details[0].message;
   }
 }
@@ -37,13 +37,13 @@ function *execute(next) {
   let postModel = require("../orm/posts-model");
   let posts = postModel.instance;
   let json = null;
-  try{
+  try {
       /*
       let joi_schema = waterline_joi(postModel.schema.attributes);
       yield joiValidate(data, joi_schema, { allowUnknown: true });
       */
       json = yield posts.create(data);
-  } catch(err) {
+  } catch (err) {
       json = err;
   }
   this.body = json;
