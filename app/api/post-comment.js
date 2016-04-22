@@ -38,13 +38,13 @@ function *execute(next) {
   let posts = postModel.instance;
   let json = null;
   try {
-      /*
-      let joi_schema = waterline_joi(postModel.schema.attributes);
-      yield joiValidate(data, joi_schema, { allowUnknown: true });
-      */
-      json = yield posts.create(data);
+    /*
+    let joi_schema = waterline_joi(postModel.schema.attributes);
+    yield joiValidate(data, joi_schema, { allowUnknown: true });
+    */
+    json = yield posts.create(data);
   } catch (err) {
-      json = err;
+    json = err;
   }
   this.body = json;
 }
