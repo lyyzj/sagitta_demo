@@ -17,8 +17,14 @@
   },
   "homepage": "https://github.com/agreatfool/sagitta_demo#readme",
   "dependencies": {
+    "co": "^4.6.0",
+    "fs-extra": "^0.26.7",
     "joi": "^8.0.5",
-    "sagitta": "^1.0.15",
-    "sails-memory": "^0.10.6"
+    "request": "^2.71.0",
+    "sagitta": "^1.0.17",
+    "sails-memory": "^0.10.6",
+    "sails-mongo": "^0.12.0",
+    "uuid": "^2.0.1",
+    "waterline-joi": "^1.0.12"
   }
 }

@@ -5,6 +5,7 @@ const OrmModel = require('sagitta').Orm.OrmModel;
 class UserItemModel extends OrmModel {
 
   constructor() {
+    super();
     this.name        = 'user-item';
     this.cacheKey    = 'userId';
     this.schema      = {
